@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import img from './images/9ufayzzd8ih91.jpg'
 import db from './firebase.config';
 import { collection, getDocs } from "firebase/firestore";
+import ShowPopUp from './ShowPopUp';
 
 
 function App() {
@@ -41,7 +42,8 @@ function App() {
         <img src={img} onClick={loginfo}>
         </img>
       </div>
-      {popup ? <div className="pop" style={{ top: coord[1], left: coord[0] }}>TEST</div> : null}
+      {/* {popup ? <div className="pop" style={{ top: coord[1], left: coord[0] }}>TEST</div> : null} */}
+      {popup ? <ShowPopUp coord={coord} /> : null}
       {/* TODO: DROPDOWN DISPLAY FOR POPUP */}
 
     </div>
