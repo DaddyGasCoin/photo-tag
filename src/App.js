@@ -10,6 +10,7 @@ function App() {
   const [popup, setPopup] = useState(false)
   const [coord, setCoord] = useState([0, 0]) //coordinate for popup
   const [characterCoord, setCharacterCoord] = useState()
+  const [coordSelected, setCoordSelected] = useState([])
   let coordinates = {}
 
   useEffect(() => {
@@ -28,12 +29,37 @@ function App() {
     // const rect = e.target.getBoundingClientRect();
     // const x = e.clientX - rect.left; //x position within the element.
     // const y = e.clientY - rect.top;  //y position within the element.
-    // console.log("Left? : " + x + " ; Top? : " + y + ".");
+    const x = e.pageX - e.currentTarget.offsetLeft;
+    const y = e.pageY - e.currentTarget.offsetTop;
+    console.log("Left? : " + x + " ; Top? : " + y + ".");
+    setCoordSelected([x, y])
     const bool = !popup
     setPopup(bool)
     setCoord([e.clientX + 15, e.clientY])
-    console.log(characterCoord)
+    // console.log(characterCoord)
 
+  }
+
+  function validateChoise(name, coords) {
+    if (!(characterCoord[name]['min-x'] <= coords[0])) {
+      return false
+    }
+    if (!(characterCoord[name]['max-x'] >= coords[0])) {
+      return false
+    }
+    if (!(characterCoord[name]['min-y'] <= coords[1])) {
+      return false
+    }
+    if (!(characterCoord[name]['max-y'] >= coords[1])) {
+      return false
+    }
+    return true
+  }
+  function handleclick(option, e) {
+    // console.log(e.target)
+    // console.log(option)
+    // console.log(coordSelected)
+    validateChoise(option, coordSelected)
   }
 
   return (
@@ -42,10 +68,7 @@ function App() {
         <img src={img} onClick={loginfo}>
         </img>
       </div>
-      {/* {popup ? <div className="pop" style={{ top: coord[1], left: coord[0] }}>TEST</div> : null} */}
-      {popup ? <ShowPopUp coord={coord} /> : null}
-      {/* TODO: DROPDOWN DISPLAY FOR POPUP */}
-
+      {popup ? <ShowPopUp coord={coord} handler={handleclick} /> : null}
     </div>
 
   );
