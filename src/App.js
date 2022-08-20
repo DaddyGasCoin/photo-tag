@@ -4,6 +4,7 @@ import db from './firebase.config';
 import { collection, getDocs } from "firebase/firestore";
 import ShowPopUp from './ShowPopUp';
 import ShowAnswerDisplay from './ShowAnswerDisplay';
+import DisplayStopWatch from './DisplayStopWatch';
 
 function App() {
 
@@ -13,8 +14,23 @@ function App() {
   const [coordSelected, setCoordSelected] = useState([])
   const [answerDisplay, setanswerDisplay] = useState(false)
   const [answerStaus, setAnswerStatus] = useState()
-  let coordinates = {}
+  const [time, setTime] = useState(0)
+  const [start, setStart] = useState(false)
 
+  //Update time for stopwatch
+  useEffect(() => {
+    let intervel = null
+    if (start) {
+      intervel = setInterval(() => {
+        setTime(PrevTime => PrevTime + 10)
+      }, 10)
+    } else {
+      clearInterval(intervel)
+    }
+    return () => clearInterval(intervel)
+  }, [start])
+
+  let coordinates = {}
   useEffect(() => {
     async function getCharacterCoordFromDB() {
       const querySnapshot = await getDocs(collection(db, "coordinates"));
@@ -70,6 +86,11 @@ function App() {
 
   return (
     <div className='wrapper'>
+      <DisplayStopWatch time={time} />
+      <div>
+        <button onClick={() => setStart(true)}>start</button>
+        <button onClick={() => setStart(false)}>stop</button>
+      </div>
       <div className='answer-wrap'>
         <div className='img-wrapper'>
           <img src={img} onClick={loginfo}>
