@@ -3,7 +3,7 @@ import img from './images/9ufayzzd8ih91.jpg'
 import db from './firebase.config';
 import { collection, getDocs } from "firebase/firestore";
 import ShowPopUp from './ShowPopUp';
-
+import ShowAnswerDisplay from './ShowAnswerDisplay';
 
 function App() {
 
@@ -11,6 +11,8 @@ function App() {
   const [coord, setCoord] = useState([0, 0]) //coordinate for popup
   const [characterCoord, setCharacterCoord] = useState()
   const [coordSelected, setCoordSelected] = useState([])
+  const [answerDisplay, setanswerDisplay] = useState(false)
+  const [answerStaus, setAnswerStatus] = useState()
   let coordinates = {}
 
   useEffect(() => {
@@ -25,18 +27,14 @@ function App() {
   }, [])
 
 
-  function loginfo(e) {   // e = Mouse click event.
-    // const rect = e.target.getBoundingClientRect();
-    // const x = e.clientX - rect.left; //x position within the element.
-    // const y = e.clientY - rect.top;  //y position within the element.
-    const x = e.pageX - e.currentTarget.offsetLeft;
-    const y = e.pageY - e.currentTarget.offsetTop;
-    console.log("Left? : " + x + " ; Top? : " + y + ".");
+  function loginfo(e) {
+    const rect = e.target.getBoundingClientRect();
+    const x = e.clientX - rect.left; //x position within the element.
+    const y = e.clientY - rect.top;  //y position within the element.
     setCoordSelected([x, y])
     const bool = !popup
     setPopup(bool)
     setCoord([e.clientX + 15, e.clientY])
-    // console.log(characterCoord)
 
   }
 
@@ -55,18 +53,29 @@ function App() {
     }
     return true
   }
+
+  function displayAnswer() {
+    setanswerDisplay(true)
+    setTimeout(() => {
+      setanswerDisplay(false)
+    }, 1000);
+  }
   function handleclick(option, e) {
-    // console.log(e.target)
-    // console.log(option)
-    // console.log(coordSelected)
-    validateChoise(option, coordSelected)
+    //TODO: Hide selected option if correct
+    setAnswerStatus(validateChoise(option, coordSelected))
+    setPopup(!popup)
+    displayAnswer()
+
   }
 
   return (
     <div className='wrapper'>
-      <div className='img-wrapper'>
-        <img src={img} onClick={loginfo}>
-        </img>
+      <div className='answer-wrap'>
+        <div className='img-wrapper'>
+          <img src={img} onClick={loginfo}>
+          </img>
+        </div>
+        {answerDisplay ? <ShowAnswerDisplay answer={answerStaus} /> : null}
       </div>
       {popup ? <ShowPopUp coord={coord} handler={handleclick} /> : null}
     </div>

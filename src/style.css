@@ -4,10 +4,11 @@
 }
 
 .img-wrapper {
-    width: 90vw;
-    height: 90vh;
     overflow-y: scroll;
     overflow-x: scroll;
+    width: 90vw;
+    height: 90vh;
+    position: relative;
 }
 
 .wrapper {
@@ -20,8 +21,8 @@
 
 
 img {
-    width: 200%;
-    height: 200%;
+    width: 1500px;
+    height: 1200px;
 }
 
 .pop-wrapper {
@@ -37,4 +38,19 @@ img {
     color: white;
     font-size: 1.5rem;
     font-weight: 600;
+}
+
+.answer-display {
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    padding: 5px 10px;
+    background-color: white;
+    color: black;
+}
+
+.answer-wrap {
+    position: relative;
 }
