@@ -45,6 +45,14 @@ function App() {
     setCharacterCoord(coordinates)
   }, [])
 
+  useEffect(() => {
+    console.log(isGameOver())
+    if (isGameOver()) {
+      setStart(false)
+    }
+  }, [popup]);
+
+
 
   function loginfo(e) {
     const rect = e.target.getBoundingClientRect();
@@ -84,6 +92,20 @@ function App() {
     setStart(true)
     showInstructionsDisplay(false)
   }
+
+  function isGameOver() {
+    let count = 0
+    for (const key of Object.keys(options)) {
+      if (options[key] === false) {
+        count += 1
+      }
+    }
+    if (count === 3) {
+      return true
+    }
+    return false
+  }
+
   function handleclick(option, e) {
     setAnswerStatus(validateChoise(option, coordSelected))
     setPopup(!popup)
@@ -93,21 +115,20 @@ function App() {
   }
 
   return (
-    <div className='wrapper'>
-      <DisplayStopWatch time={time} />
-      {instructionsDisplay ? <ShowInsructions startTimer={startTimer} /> : null}
-      <div>
-        <button onClick={() => setStart(false)}>stop</button>
-      </div>
-      <div className='answer-wrap'>
-        <div className='img-wrapper'>
-          <img src={img} onClick={loginfo}>
-          </img>
+    <>
+      <div className='wrapper'>
+        <DisplayStopWatch time={time} />
+        <div className='answer-wrap'>
+          <div className='img-wrapper'>
+            <img src={img} onClick={loginfo}>
+            </img>
+          </div>
+          {answerDisplay ? <ShowAnswerDisplay answer={answerStaus} /> : null}
         </div>
-        {answerDisplay ? <ShowAnswerDisplay answer={answerStaus} /> : null}
+        {popup ? <ShowPopUp coord={coord} handler={handleclick} popStyle={options} /> : null}
       </div>
-      {popup ? <ShowPopUp coord={coord} handler={handleclick} popStyle={options} /> : null}
-    </div>
+      {instructionsDisplay ? <ShowInsructions startTimer={startTimer} /> : null}
+    </>
   );
 }
 
