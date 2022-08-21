@@ -5,6 +5,7 @@ import { collection, getDocs } from "firebase/firestore";
 import ShowPopUp from './ShowPopUp';
 import ShowAnswerDisplay from './ShowAnswerDisplay';
 import DisplayStopWatch from './DisplayStopWatch';
+import ShowInsructions from './ShowInstructions';
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
   const [time, setTime] = useState(0)
   const [start, setStart] = useState(false)
   const [options, setOptions] = useState({ creeper: true, deadpool: true, ash: true })
+  const [instructionsDisplay, showInstructionsDisplay] = useState(true)
 
   //Update time for stopwatch
   useEffect(() => {
@@ -78,6 +80,10 @@ function App() {
     }, 1000);
   }
 
+  function startTimer() {
+    setStart(true)
+    showInstructionsDisplay(false)
+  }
   function handleclick(option, e) {
     setAnswerStatus(validateChoise(option, coordSelected))
     setPopup(!popup)
@@ -89,8 +95,8 @@ function App() {
   return (
     <div className='wrapper'>
       <DisplayStopWatch time={time} />
+      {instructionsDisplay ? <ShowInsructions startTimer={startTimer} /> : null}
       <div>
-        <button onClick={() => setStart(true)}>start</button>
         <button onClick={() => setStart(false)}>stop</button>
       </div>
       <div className='answer-wrap'>
@@ -102,7 +108,6 @@ function App() {
       </div>
       {popup ? <ShowPopUp coord={coord} handler={handleclick} popStyle={options} /> : null}
     </div>
-
   );
 }
 
