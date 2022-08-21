@@ -40,6 +40,11 @@ img {
     font-weight: 600;
 }
 
+.pop-item.hidden {
+    color: green;
+
+}
+
 .answer-display {
     position: absolute;
     left: 50%;

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import img from './images/9ufayzzd8ih91.jpg'
 import db from './firebase.config';
 import { collection, getDocs } from "firebase/firestore";
@@ -16,6 +16,7 @@ function App() {
   const [answerStaus, setAnswerStatus] = useState()
   const [time, setTime] = useState(0)
   const [start, setStart] = useState(false)
+  const [options, setOptions] = useState({ creeper: true, deadpool: true, ash: true })
 
   //Update time for stopwatch
   useEffect(() => {
@@ -76,12 +77,13 @@ function App() {
       setanswerDisplay(false)
     }, 1000);
   }
+
   function handleclick(option, e) {
-    //TODO: Hide selected option if correct
     setAnswerStatus(validateChoise(option, coordSelected))
     setPopup(!popup)
     displayAnswer()
-
+    if (validateChoise(option, coordSelected))
+      setOptions({ ...options, [option]: false })
   }
 
   return (
@@ -98,7 +100,7 @@ function App() {
         </div>
         {answerDisplay ? <ShowAnswerDisplay answer={answerStaus} /> : null}
       </div>
-      {popup ? <ShowPopUp coord={coord} handler={handleclick} /> : null}
+      {popup ? <ShowPopUp coord={coord} handler={handleclick} popStyle={options} /> : null}
     </div>
 
   );
