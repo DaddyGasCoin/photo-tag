@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import img from './images/9ufayzzd8ih91.jpg'
 import db from './firebase.config';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, setDoc } from "firebase/firestore";
 import ShowPopUp from './ShowPopUp';
 import ShowAnswerDisplay from './ShowAnswerDisplay';
 import DisplayStopWatch from './DisplayStopWatch';
 import ShowInsructions from './ShowInstructions';
+import DisplayGameOver from './DisplayGameOver';
 
 function App() {
 
@@ -19,6 +20,8 @@ function App() {
   const [start, setStart] = useState(false)
   const [options, setOptions] = useState({ creeper: true, deadpool: true, ash: true })
   const [instructionsDisplay, showInstructionsDisplay] = useState(true)
+  const [gameOver, setGameOverStatus] = useState(false)
+  const [name, setname] = useState()
 
   //Update time for stopwatch
   useEffect(() => {
@@ -45,10 +48,11 @@ function App() {
     setCharacterCoord(coordinates)
   }, [])
 
+
   useEffect(() => {
-    console.log(isGameOver())
     if (isGameOver()) {
       setStart(false)
+      setGameOverStatus(true)
     }
   }, [popup]);
 
@@ -114,6 +118,20 @@ function App() {
       setOptions({ ...options, [option]: false })
   }
 
+  //Add users time to database
+  async function sumbitDetails() {
+    const formatedTime = formatTime(time)
+    await setDoc(doc(db, "leaderboard", name), {
+      time: formatedTime
+    }).then(console.log('done'))
+  }
+
+  function formatTime(time) {
+    const min = ("0" + Math.floor((time / 60000) % 60)).slice(-2)
+    const sec = ("0" + Math.floor((time / 1000) % 60)).slice(-2)
+    const milisec = ("0" + (time / 10) % 1000).slice(-2)
+    return `${min}:${sec}:${milisec}`
+  }
   return (
     <>
       <div className='wrapper'>
@@ -128,6 +146,7 @@ function App() {
         {popup ? <ShowPopUp coord={coord} handler={handleclick} popStyle={options} /> : null}
       </div>
       {instructionsDisplay ? <ShowInsructions startTimer={startTimer} /> : null}
+      {gameOver ? <DisplayGameOver name={setname} submit={sumbitDetails} /> : null}
     </>
   );
 }

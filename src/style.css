@@ -60,10 +60,16 @@ img {
     position: relative;
 }
 
-.instructions {
+.instructions,
+.gameover-screen {
     position: fixed;
     top: 50%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+}
+
+.gameover-screen {
+    background-color: white;
+    padding: 30px;
 }
