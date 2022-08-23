@@ -123,7 +123,7 @@ function App() {
     const formatedTime = formatTime(time)
     await setDoc(doc(db, "leaderboard", name), {
       time: formatedTime
-    }).then(console.log('done'))
+    }).then(resetGame())
   }
 
   function formatTime(time) {
@@ -132,10 +132,23 @@ function App() {
     const milisec = ("0" + (time / 10) % 1000).slice(-2)
     return `${min}:${sec}:${milisec}`
   }
+
+  function resetGame() {
+    setGameOverStatus(false)
+    setTime(0)
+    setOptions({ creeper: true, deadpool: true, ash: true })
+    showInstructionsDisplay(true)
+
+
+  }
+
   return (
     <>
       <div className='wrapper'>
-        <DisplayStopWatch time={time} />
+        <div className='head-wrapper'>
+          <div className='head-text'>LEADERBOARDS</div>
+          <DisplayStopWatch time={time} />
+        </div>
         <div className='answer-wrap'>
           <div className='img-wrapper'>
             <img src={img} onClick={loginfo}>
@@ -146,7 +159,7 @@ function App() {
         {popup ? <ShowPopUp coord={coord} handler={handleclick} popStyle={options} /> : null}
       </div>
       {instructionsDisplay ? <ShowInsructions startTimer={startTimer} /> : null}
-      {gameOver ? <DisplayGameOver name={setname} submit={sumbitDetails} /> : null}
+      {gameOver ? <DisplayGameOver name={setname} submit={sumbitDetails} time={formatTime(time)} /> : null}
     </>
   );
 }

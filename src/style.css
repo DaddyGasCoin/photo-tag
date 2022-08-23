@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Silkscreen&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
+
 * {
     padding: 0%;
     margin: 0%
+}
+
+body {
+    background-color: #bae6fd;
 }
 
 .img-wrapper {
@@ -29,20 +36,20 @@ img {
     position: absolute;
     display: flex;
     flex-direction: column;
-    background-color: black;
+    background-color: white;
+    border: 2px solid black;
 }
 
 .pop-item {
-    border: 2px solid black;
     padding: 1% 2%;
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 600;
+    font-size: 2.2rem;
+    font-weight: 400;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    padding: 5px;
 }
 
-.pop-item.hidden {
-    color: green;
-
+.pop-item-wrap:hover {
+    background-color: #f3f4f6;
 }
 
 .answer-display {
@@ -50,10 +57,18 @@ img {
     left: 50%;
     top: 20%;
     transform: translate(-50%, -50%);
-    border: 1px solid black;
+    border: 3px solid black;
     padding: 5px 10px;
-    background-color: white;
-    color: black;
+    background-color: #22c55e;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    opacity: .9;
+
+}
+
+.wrong {
+    background-color: #ef4444;
 }
 
 .answer-wrap {
@@ -70,6 +85,114 @@ img {
 }
 
 .gameover-screen {
+    display: flex;
+    flex-direction: column;
     background-color: white;
     padding: 30px;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    text-align: center;
+    align-items: center;
+    gap: .5rem;
+    border: 4px solid black;
+    border-radius: 12px;
+
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.game-text {
+    font-size: 1.5rem;
+}
+
+.instructions {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    font-family: 'Silkscreen', cursive;
+    width: 40%;
+    font-size: 1rem;
+    padding: 2%;
+    align-items: center;
+    gap: 1.8rem;
+    border: 4px solid black;
+    border-radius: 12px;
+}
+
+.big-para {
+    font-size: 2.5rem;
+    /* text-align: center; */
+    font-weight: 900;
+
+}
+
+button {
+    width: fit-content;
+    padding: 1%;
+}
+
+.char {
+    width: 75px;
+    height: 180px;
+}
+
+.character-wrap {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.card-wrap {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.head-wrapper {
+    display: flex;
+    padding: .4%;
+    width: 90vw;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.charface {
+    height: 60px;
+    width: 60px;
+}
+
+.pop-item-wrap {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.start-btn,
+.submit-btn {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 2rem;
+    padding: 1% 2%;
+    background-color: #22c55e;
+    text-transform: uppercase;
+    border: 2px solid black;
+    border-radius: 8px;
+}
+
+.start-btn:hover {
+    background-color: #15803d;
+}
+
+.head-text {
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.submit-btn {
+    font-size: 1.5rem;
+    font-weight: 600;
+
+
 }
