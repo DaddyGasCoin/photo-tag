@@ -23,7 +23,7 @@ const Leaderboard = () => {
       <Link className="link" to="/">
         <div className='home-link'>HOME PAGE</div>
       </Link>
-      <div className='board-tittle'>LEADEROARD</div>
+      <div className='board-tittle'>LEADERBOARD</div>
       <div className='leaderboard'>
         <div className='board-users'>
           <div className="board-data">USERS</div>
