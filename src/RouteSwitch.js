@@ -5,7 +5,7 @@ import Leaderboard from "./LeaderBoard";
 
 const RouteSwitch = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/LeaderBoards" element={<Leaderboard />} />
