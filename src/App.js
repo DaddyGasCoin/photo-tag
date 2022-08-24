@@ -7,6 +7,8 @@ import ShowAnswerDisplay from './ShowAnswerDisplay';
 import DisplayStopWatch from './DisplayStopWatch';
 import ShowInsructions from './ShowInstructions';
 import DisplayGameOver from './DisplayGameOver';
+import { Link } from "react-router-dom";
+
 
 function App() {
 
@@ -146,7 +148,9 @@ function App() {
     <>
       <div className='wrapper'>
         <div className='head-wrapper'>
-          <div className='head-text'>LEADERBOARDS</div>
+          <Link className="link" to="/leaderboards">
+            <div className='head-text'>LEADERBOARDS</div>
+          </Link >
           <DisplayStopWatch time={time} />
         </div>
         <div className='answer-wrap'>
