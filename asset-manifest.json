@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/photo-tag/static/css/main.3ab76540.css",
+    "main.js": "/photo-tag/static/js/main.563df488.js",
+    "static/media/9ufayzzd8ih91.jpg": "/photo-tag/static/media/9ufayzzd8ih91.a65a9f16fab3d618f362.jpg",
+    "static/media/ash_face.png": "/photo-tag/static/media/ash_face.3b37ec4e50e163afbab7.png",
+    "static/media/Deadpoool.png": "/photo-tag/static/media/Deadpoool.d1e0efdb0bccb0a7cdb0.png",
+    "static/media/Ash_Ketchum_Journeys.png": "/photo-tag/static/media/Ash_Ketchum_Journeys.44e3888fb43c1de39adf.png",
+    "static/media/Creeper_JE2_BE1.jpg": "/photo-tag/static/media/Creeper_JE2_BE1.8b3a50d7107884e7c178.jpg",
+    "static/media/creeper_face.jpg": "/photo-tag/static/media/creeper_face.bdd80aef050d2e0a50ac.jpg",
+    "static/media/deadpool_face.png": "/photo-tag/static/media/deadpool_face.7064ac6c48f057583a06.png",
+    "index.html": "/photo-tag/index.html",
+    "main.3ab76540.css.map": "/photo-tag/static/css/main.3ab76540.css.map",
+    "main.563df488.js.map": "/photo-tag/static/js/main.563df488.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3ab76540.css",
+    "static/js/main.563df488.js"
+  ]
+}
