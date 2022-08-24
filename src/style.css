@@ -7,7 +7,7 @@
 }
 
 body {
-    background-color: #bae6fd;
+    background-color: #4b5563;
 }
 
 .img-wrapper {
@@ -124,7 +124,6 @@ img {
 
 .big-para {
     font-size: 2.5rem;
-    /* text-align: center; */
     font-weight: 900;
 
 }
@@ -192,11 +191,14 @@ button {
     font-weight: 700;
 }
 
+.head-text:hover,
+.home-link:hover {
+    color: blue;
+}
+
 .submit-btn {
     font-size: 1.5rem;
     font-weight: 600;
-
-
 }
 
 .link {
