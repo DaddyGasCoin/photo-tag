@@ -38,16 +38,17 @@ function App() {
     return () => clearInterval(intervel)
   }, [start])
 
-  let coordinates = {}
   useEffect(() => {
     async function getCharacterCoordFromDB() {
       const querySnapshot = await getDocs(collection(db, "coordinates"));
       querySnapshot.forEach((doc) => {
-        coordinates[doc.id] = doc.data()
+        setCharacterCoord((prevState) => ({
+          ...prevState,
+          [doc.id]: doc.data()
+        }))
       });
     }
     getCharacterCoordFromDB()
-    setCharacterCoord(coordinates)
   }, [])
 
 
