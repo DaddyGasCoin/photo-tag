@@ -4,7 +4,7 @@
 [Play Here](https://DaddyGasCoin.github.io/photo-tag) :point_left:
 
 
-## Technologies
+## Build Tools
 
 ### Frameworks
 - [React](https://reactjs.org/)
